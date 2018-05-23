@@ -3,34 +3,66 @@ Package simpleAdder ;
      
 Helpers 
     /* Our helpers */ 
-    digito = ['0' .. '9'] ; 
-    letra = [['a' .. 'z'] + ['A' .. 'Z'] ;
-    sublinhado = '_' ;
-    espaco = ' ' ; 
+    digit = ['0' .. '9'] ; 
+    letmaius = ['A'..'Z']; 
+    letminus = ['a'..'z'];
+    und = '_' ;
+    sp = ' ' ; 
     nl = 10 ; 
-    qualquer_caractere = [0x0 .. 0xfffff] ;
-    mais = '+';
-    menos = '-';
-    vezes = '*';
-    divisao = '/';
-    
+    tudo = [0..0xffff] ;
+  
   
 Tokens 
     /* Our simple token definition(s). */ 
-    identificador = letra|sublinhado(letra | digito)* ;
-    inteiro = digito+ espaco* ;
-    real = digito+ '.' digito+;  
-    adicao = (inteiro mais inteiro) | (real mais real); 
-    subtracao = (inteiro menos inteiro) | (real menos real);
-     
-    semi = ';' nl?; 
-    comentario = // qualquer_caractere nl;
-  
-Productions 
-    /* Our super-simple grammar */ 
-    program = [left]:integer plus [right]:integer semi;
+    integer = digit+ sp*;     
     
-
-Ignored Tokens
-	comentario;
-	espaco;
+    identificadores = (letminus | und) (letminus | letmaius | digit | und)* ;
+    decimal = digit+ ',' digit digit;
+    
+    coment = '//' tudo;
+    string = (letmaius | letminus)+ ;
+    
+    /* Operadores */
+    
+    	//Matematicos
+    	soma = '+' sp*; 
+    	subt = '-' sp*;
+    	mult = '*' sp*;
+    	divi = '/' sp*;
+    	
+    	//Relacionais
+    	maior = '>' sp*;
+    	menor = '<' sp*;
+    	maiorigual = '>=' sp*;
+    	menorigual = '<=' sp*;
+    	igual = '=' sp*;
+    	
+    	//Boleanos
+    	nao = 'nao' sp*;
+    	e = 'e' sp*;
+    	ou = 'ou' sp*;
+    	
+   		//Atribuicao
+   		atribuicao = ':=' sp*;  
+   		
+   		//Termino de Comando
+   		 final = ';' nl?; 
+    
+    	caractere = 'caractere' sp*;
+    	real = 'real' sp*;
+    	inteiro = 'inteiro' sp*;
+    	inicio = 'inicio' sp*;
+    	fim = 'fim' sp*;
+    	se = 'se' sp*;
+    	senao = 'senao' sp*;
+    	enquanto = 'enquanto';
+    	para = 'para' sp*;
+    	avalie = 'avalie' sp*;
+    	caso = 'caso' sp*;
+    	verdadeiro = 'verdadeiro' sp*;
+    	falso = 'falso' sp*;
+    	booleano = 'booleano' sp*;
+    	
+ Productions 
+    /* Our super-simple grammar */ 
+    program = [left]:integer soma [right]:integer;
