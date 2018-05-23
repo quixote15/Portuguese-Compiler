@@ -20,7 +20,8 @@ Tokens
     identificadores = (letminus | und) (letra | digit | und)* ;
     decimal = digit+ ',' digit digit;
     
-    coment = '//' qualquer_caractere;
+    comentario_linha = '//' qualquer_caractere;
+    comentario_aninhado = '/*' (comentario_aninhado | .)* '*/'; 
     string = (letra)+ ;
     
     /* Operadores */
