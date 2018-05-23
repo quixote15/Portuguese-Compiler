@@ -1,0 +1,36 @@
+/* simpleAdder.sable - A very simple program that recognizes two integers being added. */ 
+Package simpleAdder ; 
+     
+Helpers 
+    /* Our helpers */ 
+    digito = ['0' .. '9'] ; 
+    letra = [['a' .. 'z'] + ['A' .. 'Z'] ;
+    sublinhado = '_' ;
+    espaco = ' ' ; 
+    nl = 10 ; 
+    qualquer_caractere = [0x0 .. 0xfffff] ;
+    mais = '+';
+    menos = '-';
+    vezes = '*';
+    divisao = '/';
+    
+  
+Tokens 
+    /* Our simple token definition(s). */ 
+    identificador = letra|sublinhado(letra | digito)* ;
+    inteiro = digito+ espaco* ;
+    real = digito+ '.' digito+;  
+    adicao = (inteiro mais inteiro) | (real mais real); 
+    subtracao = (inteiro menos inteiro) | (real menos real);
+     
+    semi = ';' nl?; 
+    comentario = // qualquer_caractere nl;
+  
+Productions 
+    /* Our super-simple grammar */ 
+    program = [left]:integer plus [right]:integer semi;
+    
+
+Ignored Tokens
+	comentario;
+	espaco;
