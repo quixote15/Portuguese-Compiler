@@ -6,21 +6,22 @@ Helpers
     digit = ['0' .. '9'] ; 
     letmaius = ['A'..'Z']; 
     letminus = ['a'..'z'];
+    letra = [letmaius | letminus];
     und = '_' ;
     sp = ' ' ; 
     nl = 10 ; 
-    tudo = [0..0xffff] ;
+    qualquer_caractere = [0..0xffff] ;
   
   
 Tokens 
     /* Our simple token definition(s). */ 
     integer = digit+ sp*;     
     
-    identificadores = (letminus | und) (letminus | letmaius | digit | und)* ;
+    identificadores = (letminus | und) (letra | digit | und)* ;
     decimal = digit+ ',' digit digit;
     
-    coment = '//' tudo;
-    string = (letmaius | letminus)+ ;
+    coment = '//' qualquer_caractere;
+    string = (letra)+ ;
     
     /* Operadores */
     
