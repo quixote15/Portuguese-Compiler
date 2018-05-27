@@ -1,0 +1,120 @@
+/* simpleAdder.sable - A very simple program that recognizes two inteiros being added. */ 
+Package simpleAdder ; 
+     
+Helpers 
+    /* Our helpers */ 
+    digit = ['0' .. '9'] ; 
+    nondigit = ['_' + [['a' .. 'z'] + ['A' .. 'Z']]];
+    let_maius = ['A'..'Z']; 
+    let_minus = ['a'..'z'];
+    letra = (let_maius+ | let_minus+);
+    und = '_' ;
+    sp = ' ' ; 
+    nl = 10 ; 
+    verdadeiro = 'verdadeiro';
+    falso = 'falso';
+    tudo = [0..0xffff] ; 
+	tudomenos = [[0..0xffff] - [10 + 13]];
+	l_bracket = '['; 
+	r_bracket = ']';
+	
+	tcaractere = letra | digit;
+    treal =  'real'; 
+    tinteiro = 'inteiro';
+    tbool = 'booleano' ;
+	
+ 
+States
+  normal,
+  comment;
+	  
+Tokens 
+    /* Our simple token definition(s). */ 
+    inteiro = ('-'digit+ | '+'digit+ | digit+ ) ;     
+    
+    identificador = (let_minus | und) (letra | digit | und | nl)* ;
+    
+	//identificador = nondigit (digit | nondigit)*;
+    
+    //decimal = digit+ ',' digit digit;
+    real = '-'digit+','digit+ | '+'digit+','digit+ | digit+','digit+;
+	booleano = (verdadeiro | falso);	 	 
+	caractere = '''(letra | digit)''' ;
+	 
+
+    coment = '//' (tudomenos)*;
+    espaco = (' ' | 10 | 13 | 9) *;
+
+    l_bracket = '['; 
+	r_bracket = ']';
+    string = (letra | digit)+ ;
+    
+	 // COMPOSIÇÃO DO VETOR tipo : id[digit]
+	 
+	 tipo = tcaractere | treal | tinteiro | tbool ;	 
+	 //id = letra( letra| digit | subl)* | subl( letra| digit | subl)*  ; 
+	 d_ponto = ':';
+	 colchete_a = '[' ;
+	 colchete_f = ']' ;
+
+	 
+	 
+	// vetor = let_maius+'[' let_maius+ ']' | let_maius+'[' let_minus+ ']' | let_maius+'[' digit+ ']' | let_minus+'[' let_maius+ ']' | let_minus+'[' let_minus+ ']' | let_minus+'[' digit+ ']' | vetor'[' let_minus+ ']' | vetor'[' digit+ ']';
+    
+    /* Operadores */
+    
+    	//Matematicos
+    	soma = '+' sp*; 
+    	subt = '-' sp*;
+    	mult = '*' sp*;
+    	divi = '/' sp*;
+    	
+    	//Relacionais
+    	maior = '>' sp*;
+    	menor = '<' sp*;
+    	maiorigual = '>=' sp*;
+    	menorigual = '<=' sp*;
+    	igual = '=' sp*;
+    	
+    	//Boleanos
+    	nao = 'nao' sp*;
+    	e = 'e' sp*;
+    	ou = 'ou' sp*;
+    	
+   		//Atribuicao
+   		atribuicao = ':=' sp*;  
+   		
+   		//Termino de Comando
+   		 final = ';' nl?; 
+    
+		//caractere = 'caractere' sp*;
+    	//real = 'real' sp*;
+    	//inteiro = 'inteiro' sp*;
+    	inicio = 'inicio' sp*;
+    	fim = 'fim' sp*;
+    	se = 'se' sp*;
+    	senao = 'senao' sp*;
+    	enquanto = 'enquanto';
+    	para = 'para' sp*;
+    	avalie = 'avalie' sp*;
+    	caso = 'caso' sp*;
+    	verdadeiro = 'verdadeiro' sp*;
+    	falso = 'falso' sp*;
+    	//booleano = 'booleano' sp*;
+
+{normal-> comment, comment}
+          comment = '/*';
+
+{comment} comment_end = '*/';
+{comment} comment_body = [tudo - ['*' + '/']] *;
+{comment} star = '*';
+{comment} slash = '/';  
+ 	
+Ignored Tokens
+ 	coment, comment, comment_end, comment_body;	
+ 
+ Productions 
+    /* Our super-simple grammar */ 
+    program = [left]:inteiro soma [right]:inteiro;
+    	    	 		
+    	    	 		
