@@ -7,14 +7,14 @@ import simpleAdder.analysis.*;
 @SuppressWarnings("nls")
 public final class TCaso extends Token
 {
-    public TCaso(String text)
+    public TCaso()
     {
-        setText(text);
+        super.setText("caso");
     }
 
-    public TCaso(String text, int line, int pos)
+    public TCaso(int line, int pos)
     {
-        setText(text);
+        super.setText("caso");
         setLine(line);
         setPos(pos);
     }
@@ -22,12 +22,18 @@ public final class TCaso extends Token
     @Override
     public Object clone()
     {
-      return new TCaso(getText(), getLine(), getPos());
+      return new TCaso(getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTCaso(this);
+    }
+
+    @Override
+    public void setText(@SuppressWarnings("unused") String text)
+    {
+        throw new RuntimeException("Cannot change TCaso text.");
     }
 }

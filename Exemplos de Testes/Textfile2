@@ -1,0 +1,13 @@
+entity simples_porta is
+ port (a, b, c : in bit; f: out bit);
+end simples_porta;
+entity simples_porta is
+ port (a, b, c : in bit; f: out bit);
+end simples_porta;
+architecture tipo_da_descrição of simples_porta is
+ Declaração_1;
+Declaração_2;
+begin
+ comando_1;
+comando_2;
+end tipo_da_descrição;

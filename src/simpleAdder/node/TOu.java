@@ -7,14 +7,14 @@ import simpleAdder.analysis.*;
 @SuppressWarnings("nls")
 public final class TOu extends Token
 {
-    public TOu(String text)
+    public TOu()
     {
-        setText(text);
+        super.setText("ou");
     }
 
-    public TOu(String text, int line, int pos)
+    public TOu(int line, int pos)
     {
-        setText(text);
+        super.setText("ou");
         setLine(line);
         setPos(pos);
     }
@@ -22,12 +22,18 @@ public final class TOu extends Token
     @Override
     public Object clone()
     {
-      return new TOu(getText(), getLine(), getPos());
+      return new TOu(getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTOu(this);
+    }
+
+    @Override
+    public void setText(@SuppressWarnings("unused") String text)
+    {
+        throw new RuntimeException("Cannot change TOu text.");
     }
 }

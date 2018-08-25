@@ -7,14 +7,14 @@ import simpleAdder.analysis.*;
 @SuppressWarnings("nls")
 public final class TAvalie extends Token
 {
-    public TAvalie(String text)
+    public TAvalie()
     {
-        setText(text);
+        super.setText("avalie");
     }
 
-    public TAvalie(String text, int line, int pos)
+    public TAvalie(int line, int pos)
     {
-        setText(text);
+        super.setText("avalie");
         setLine(line);
         setPos(pos);
     }
@@ -22,12 +22,18 @@ public final class TAvalie extends Token
     @Override
     public Object clone()
     {
-      return new TAvalie(getText(), getLine(), getPos());
+      return new TAvalie(getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTAvalie(this);
+    }
+
+    @Override
+    public void setText(@SuppressWarnings("unused") String text)
+    {
+        throw new RuntimeException("Cannot change TAvalie text.");
     }
 }

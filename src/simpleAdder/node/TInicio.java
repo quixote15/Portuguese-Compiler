@@ -7,14 +7,14 @@ import simpleAdder.analysis.*;
 @SuppressWarnings("nls")
 public final class TInicio extends Token
 {
-    public TInicio(String text)
+    public TInicio()
     {
-        setText(text);
+        super.setText("inicio");
     }
 
-    public TInicio(String text, int line, int pos)
+    public TInicio(int line, int pos)
     {
-        setText(text);
+        super.setText("inicio");
         setLine(line);
         setPos(pos);
     }
@@ -22,12 +22,18 @@ public final class TInicio extends Token
     @Override
     public Object clone()
     {
-      return new TInicio(getText(), getLine(), getPos());
+      return new TInicio(getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTInicio(this);
+    }
+
+    @Override
+    public void setText(@SuppressWarnings("unused") String text)
+    {
+        throw new RuntimeException("Cannot change TInicio text.");
     }
 }

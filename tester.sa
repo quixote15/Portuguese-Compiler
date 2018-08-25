@@ -1,11 +1,53 @@
+programa primeiro
+inicio	
 
-
-/*
-joao + maria;
-*/
-
-joao + maria;
-/*
-oi + oi
-*/
-*/
+	inteiro : a , b , c ;
+	inteiro : vetorint [10] ;
+	real : r , s , p ;
+	caractere: f, g, h ;
+	
+	a := ( 2 * 3 ) ;
+	
+	leia ( a , a ) ;
+	
+	se (1) entao 
+		enquanto ( nao  (2 - 1)  ) faca 
+			f := ( 'a' );
+		fim enquanto ;
+		b := ( 1 * 2 );
+	fim se ;
+	
+	se ( 2 = 2 ) entao 
+		b := ( 1 * 2 ); 
+	senao 
+		c := ( 2 * 2 ); 
+	fim se ;
+	
+	avalie ( 2 ) 
+		caso 2 : 
+			a := (2 * 2 );
+		caso 3 :
+			enquanto ( (2 < 10) e (1 > 10) xor ( 2 < 10 )  ) faca
+				f := ( 'b' ) ;
+			fim enquanto ;
+			b := ( 1*20 );
+		senao :
+			s := ( 2,2 + 1) ;
+	fim avalie ;
+	
+	enquanto ( 2 > 1 ) faca 
+		f := 'a' ;
+	fim enquanto ;
+	
+	repita 
+		b := 1 + 1 ;
+	ate (b <= 100);	
+	
+	para b de 1 ate 10 faca
+		b := 1 + b ;
+	fim para ;
+	
+	para b de 1 passo 100 ate 2 faca
+		b := 10 + b ;
+	fim para ;
+fim.

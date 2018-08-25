@@ -7,14 +7,14 @@ import simpleAdder.analysis.*;
 @SuppressWarnings("nls")
 public final class TPara extends Token
 {
-    public TPara(String text)
+    public TPara()
     {
-        setText(text);
+        super.setText("para");
     }
 
-    public TPara(String text, int line, int pos)
+    public TPara(int line, int pos)
     {
-        setText(text);
+        super.setText("para");
         setLine(line);
         setPos(pos);
     }
@@ -22,12 +22,18 @@ public final class TPara extends Token
     @Override
     public Object clone()
     {
-      return new TPara(getText(), getLine(), getPos());
+      return new TPara(getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTPara(this);
+    }
+
+    @Override
+    public void setText(@SuppressWarnings("unused") String text)
+    {
+        throw new RuntimeException("Cannot change TPara text.");
     }
 }

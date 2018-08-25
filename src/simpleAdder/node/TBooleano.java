@@ -7,14 +7,14 @@ import simpleAdder.analysis.*;
 @SuppressWarnings("nls")
 public final class TBooleano extends Token
 {
-    public TBooleano(String text)
+    public TBooleano()
     {
-        setText(text);
+        super.setText("booleano");
     }
 
-    public TBooleano(String text, int line, int pos)
+    public TBooleano(int line, int pos)
     {
-        setText(text);
+        super.setText("booleano");
         setLine(line);
         setPos(pos);
     }
@@ -22,12 +22,18 @@ public final class TBooleano extends Token
     @Override
     public Object clone()
     {
-      return new TBooleano(getText(), getLine(), getPos());
+      return new TBooleano(getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTBooleano(this);
+    }
+
+    @Override
+    public void setText(@SuppressWarnings("unused") String text)
+    {
+        throw new RuntimeException("Cannot change TBooleano text.");
     }
 }

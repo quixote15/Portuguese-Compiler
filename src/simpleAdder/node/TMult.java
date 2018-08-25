@@ -7,14 +7,14 @@ import simpleAdder.analysis.*;
 @SuppressWarnings("nls")
 public final class TMult extends Token
 {
-    public TMult(String text)
+    public TMult()
     {
-        setText(text);
+        super.setText("*");
     }
 
-    public TMult(String text, int line, int pos)
+    public TMult(int line, int pos)
     {
-        setText(text);
+        super.setText("*");
         setLine(line);
         setPos(pos);
     }
@@ -22,12 +22,18 @@ public final class TMult extends Token
     @Override
     public Object clone()
     {
-      return new TMult(getText(), getLine(), getPos());
+      return new TMult(getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTMult(this);
+    }
+
+    @Override
+    public void setText(@SuppressWarnings("unused") String text)
+    {
+        throw new RuntimeException("Cannot change TMult text.");
     }
 }

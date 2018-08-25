@@ -1,0 +1,13 @@
+library IEEE
+use IEEE.std_logic_1164.all;
+
+entity Counter is
+	port (
+		CLK: in STD_LOGIC;
+		RESET: in STD_LOGIC;
+		Q: out STD_LOGIC_vECTOR (3 downto 0)
+	_);
+end Counter;
+
+architecture Counter  of Counter is
+begin

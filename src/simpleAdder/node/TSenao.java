@@ -7,14 +7,14 @@ import simpleAdder.analysis.*;
 @SuppressWarnings("nls")
 public final class TSenao extends Token
 {
-    public TSenao(String text)
+    public TSenao()
     {
-        setText(text);
+        super.setText("senao");
     }
 
-    public TSenao(String text, int line, int pos)
+    public TSenao(int line, int pos)
     {
-        setText(text);
+        super.setText("senao");
         setLine(line);
         setPos(pos);
     }
@@ -22,12 +22,18 @@ public final class TSenao extends Token
     @Override
     public Object clone()
     {
-      return new TSenao(getText(), getLine(), getPos());
+      return new TSenao(getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTSenao(this);
+    }
+
+    @Override
+    public void setText(@SuppressWarnings("unused") String text)
+    {
+        throw new RuntimeException("Cannot change TSenao text.");
     }
 }

@@ -7,14 +7,14 @@ import simpleAdder.analysis.*;
 @SuppressWarnings("nls")
 public final class TE extends Token
 {
-    public TE(String text)
+    public TE()
     {
-        setText(text);
+        super.setText("e");
     }
 
-    public TE(String text, int line, int pos)
+    public TE(int line, int pos)
     {
-        setText(text);
+        super.setText("e");
         setLine(line);
         setPos(pos);
     }
@@ -22,12 +22,18 @@ public final class TE extends Token
     @Override
     public Object clone()
     {
-      return new TE(getText(), getLine(), getPos());
+      return new TE(getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTE(this);
+    }
+
+    @Override
+    public void setText(@SuppressWarnings("unused") String text)
+    {
+        throw new RuntimeException("Cannot change TE text.");
     }
 }

@@ -7,14 +7,14 @@ import simpleAdder.analysis.*;
 @SuppressWarnings("nls")
 public final class TNao extends Token
 {
-    public TNao(String text)
+    public TNao()
     {
-        setText(text);
+        super.setText("nao");
     }
 
-    public TNao(String text, int line, int pos)
+    public TNao(int line, int pos)
     {
-        setText(text);
+        super.setText("nao");
         setLine(line);
         setPos(pos);
     }
@@ -22,12 +22,18 @@ public final class TNao extends Token
     @Override
     public Object clone()
     {
-      return new TNao(getText(), getLine(), getPos());
+      return new TNao(getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTNao(this);
+    }
+
+    @Override
+    public void setText(@SuppressWarnings("unused") String text)
+    {
+        throw new RuntimeException("Cannot change TNao text.");
     }
 }

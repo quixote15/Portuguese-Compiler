@@ -1,10 +1,10 @@
-
 /* An interpreter for the simple math language we all espouse. */ 
 package simpleAdder1.interpret; 
   
-import simpleAdder.analysis.DepthFirstAdapter;
-import simpleAdder.node.AProgram; 
-  
+import simpleAdder.node.* ; 
+import simpleAdder.analysis.* ; 
+import java.lang.System; 
+/*  
 public class Interpreter extends DepthFirstAdapter { 
   
    public void caseAProgram(AProgram node) { 
@@ -13,4 +13,4 @@ public class Interpreter extends DepthFirstAdapter {
       int result = (new Integer(lhs)).intValue() + (new Integer(rhs)).intValue(); 
       System.out.println(lhs + "+" + rhs + "=" + result); 
    } 
-}
+}*/
